@@ -116,6 +116,7 @@ def resetapi(a, b):
     #print(urlbase)
     print(f"{p}) DUT {a[i]}  | {b[i]}")
 
+    #Request de Login
     response = requests.post(urlbase + '/cgi-bin/api/v3/system/login', data=login, headers=headers)
     sresponse = str(response)
 
@@ -144,7 +145,7 @@ def resetapi(a, b):
         response = requests.delete(urlbase + '/cgi-bin/api/v3/system/config', headers=services)
         
         #Tratar exceptions aqui...  TO DO
-        print("Sucesso!")
+        print("Sucesso!\n")
         
         #factory = response.json()
         #print(factory)
