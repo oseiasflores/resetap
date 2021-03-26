@@ -102,7 +102,7 @@ def resetapi(a, b):
 def main():
   sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
   sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 32)
-  #sock.sendto(data_itb, (MCAST_GRP, MCAST_PORT))
+  sock.sendto(data_itb, (MCAST_GRP, MCAST_PORT))
   #sock.sendto(data_dlb, (MCAST_GRP, MCAST_PORT))
   # sock.setblocking(0)
   while True:
@@ -111,13 +111,12 @@ def main():
       apmodel = []
       print("Realizando Discovery de APs...\n")
       #Comentado envia o packet fora do laço (linha 99) envia apenas uma vez
-      sock.sendto(data_itb, (MCAST_GRP, MCAST_PORT))
+      #sock.sendto(data_itb, (MCAST_GRP, MCAST_PORT))
       data, address = sock.recvfrom(1024)
       #print ('received %s bytes from %s : %s' % (len(data), address, binaryToDevice(data)))
       takemodel = binaryToDevice(data)
       print (f'AP Encontrado: {address[0]} \nModel: {takemodel["model"]}!')
-      apip.append(address[0])
-      apmodel.append(takemodel['model'])
+      #time.sleep(1)
       while True:
         print("\nRealizar um novo discovery? \n")
         saidoloop = input("Utilize [s] ou [n]:")
